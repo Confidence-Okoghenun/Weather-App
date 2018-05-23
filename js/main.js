@@ -6,6 +6,7 @@ function geoFindMe() {
   let weatherDiv = document.querySelector("#weather");
   
   if (!navigator.geolocation){
+    clearInterval(intervalId);
     output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
     return;
   }
@@ -13,6 +14,7 @@ function geoFindMe() {
   function success(position) {
     let latitude  = position.coords.latitude;
     let longitude = position.coords.longitude;
+    clearInterval(intervalId);
     output.innerHTML = "";
     
     let xmlhttp = new XMLHttpRequest();
@@ -23,7 +25,7 @@ function geoFindMe() {
           let obj = JSON.parse(xmlhttp.responseText);
           if(obj.name === "Shuzenji") success(position);
           else {
-            weatherDiv.innerHTML = `<p> ${obj.name}, ${obj.sys.country} <br> <span id="degrees" onclick="changeDegrees()">${obj.main.temp}&deg;C</span> <br> ${obj.weather[0].main}`;
+            weatherDiv.innerHTML = `<p> ${obj.name}, ${obj.sys.country} <br> <span id="degrees" onclick="changeDegrees()">${obj.main.temp}&deg;C</span> <br> ${obj.weather[0].main}</p>`;
             degreesInCelsius = obj.main.temp;
             if(obj.weather[0].main.toLowerCase() === "sun-shower") {
               document.querySelector("#sunny").setAttribute("class", "icon hydrated");
@@ -47,10 +49,20 @@ function geoFindMe() {
   }
 
   function error() {
+    clearInterval(intervalId);
     output.innerHTML = "Unable to retrieve your location. Please grant location access";
   }
 
-  output.innerHTML = "<p>Setting things up…</p>";
+  output.innerHTML = "<p>Setting things up<span id=\"dots\"></span></p>";
+  let intervalId = setInterval(dots, 700);
+  
+  function dots() {
+    if(document.querySelector("#dots").textContent.length === 3){
+      document.querySelector("#dots").textContent = "";
+    } else {
+      document.querySelector("#dots").textContent += ".";
+    }
+  }
   navigator.geolocation.getCurrentPosition(success, error);
 }
 

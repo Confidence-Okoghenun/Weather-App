@@ -1,8 +1,40 @@
 body {
   text-align: center;
   font-family: 'Ubuntu', sans-serif;
+  background: #161616;
+  color: white;
+  font-size: 2em;
+  padding-top: 10%;
 }
-
+h1 {
+  font-weight: normal;
+}
+#dots {
+  width: 40px;
+  display: inline-block;
+  text-align: left;
+}
+p {
+  margin-bottom: 0;
+}
+#degrees {
+  color: blue;
+}
+#degrees:hover{
+  color: red;
+  cursor: pointer;
+}
+ion-icon {
+  font-size: 4em;
+}
 .hidden {
   display: none;
+}
+@media (max-width: 399px) {
+  body {
+    padding-top: 3%;
+  }
+  #degrees:hover{
+  color: blue;
+  }
 }
