@@ -2,14 +2,19 @@
   <head>
     <title>Weather App</title>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <h1>Weather App</h1>
-    <p><button onclick="geoFindMe()">Show my location</button></p>
     <div id="out"></div>
     <div id="weather"></div>
-    
+    <ion-icon class="hidden" id="thunderstorm" name="thunderstorm"></ion-icon>
+    <ion-icon class="hidden" id="cloudy" name="cloudy"></ion-icon>
+    <ion-icon class="hidden" id="snow" name="snow"></ion-icon>
+    <ion-icon class="hidden" id="sunny" name="sunny"></ion-icon>
+    <ion-icon class="hidden" id="rainy" name="rainy"></ion-icon>
+    <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
